@@ -1,6 +1,14 @@
 #!/usr/bin/env ruby
 
+require 'pry'
 require "bundler/setup"
-require "mtg_cardseeker"
+require_relative "../lib/mtg_cardseeker"
 
-MtgCardseeker::CLI.new.call
+#The file that the user will run. is this the gem?
+
+
+# response = HTTParty.get('https://api.magicthegathering.io/v1/cards')
+# body = response.body
+# @data = JSON.parse(body)
+
+MtgCardseeker::CLI.new.start
