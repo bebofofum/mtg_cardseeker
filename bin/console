@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 
+require "bundler"
 require "bundler/setup"
-require "mtg_cardseeker"
+require_relative "../lib/mtg_cardseeker"
+
+# require "mtg_cardseeker"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -9,6 +12,11 @@ require "mtg_cardseeker"
 # (If you use this, don't forget to add pry to your Gemfile!)
 # require "pry"
 # Pry.start
+
+# response = HTTParty.get('https://api.magicthegathering.io/v1/cards')
+# body = response.body
+# @data = JSON.parse(body)
+
 
 require "irb"
 IRB.start(__FILE__)
