@@ -22,6 +22,13 @@ module MtgCardseeker
           MtgCards.new(card_data_hash)
         end
     end
+
+    # # ----Insert Find By section?----
+
+    def self.find_card_by_type(type)
+      MtgCards.all_uniq.find_all {|instance| instance.types.join == type}
+    end
+    
     
     def initialize(attribute = {})
       # attributes.each {|key, value| self.send(("#{key}="), value)}
@@ -32,7 +39,7 @@ module MtgCardseeker
       @text = attribute["text"]
     end
 
-    # ----Insert Find By section?----
+    
 
   end
 end
