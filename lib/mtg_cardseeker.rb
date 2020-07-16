@@ -1,4 +1,12 @@
-require "mtg_cardseeker/version"
+require "httparty"
+require 'pry'
+require_relative "./mtg_cardseeker/version"
+require_relative "./mtg_cardseeker/cli"
+require_relative "./mtg_cardseeker/api"
+require_relative "./mtg_cardseeker/mtgcards"
+
+
+
 
 module MtgCardseeker
   class Error < StandardError; end
