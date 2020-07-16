@@ -65,11 +65,12 @@ module MtgCardseeker
       puts "Thanks for using the Card Seeker. Come back soon."
     end
 
-    # ---Find By section--Move this to MtgCards class?---
-
-    def find_card_by_type(type)
-      MtgCards.all_uniq.find_all {|instance| instance.types.join == type}
-    end
+    # # ----Find By section? How to move this?----
+    
+    # def find_card_by_type(type)
+    #   MtgCards.all_uniq.find_all {|instance| instance.types.join == type}
+    # end
+    
 
     # ---List section---
 
@@ -79,8 +80,8 @@ module MtgCardseeker
     end
 
     def list_sorted_by(type)
-      creature_cards_sorted = find_card_by_type(type).take(20).sort_by {|card_array| card_array.name}
-      creature_cards_sorted.each.with_index(1) {|card, index| puts "#{index}. #{card.name}"}
+      cards_sorted = MtgCards.find_card_by_type(type).sort_by {|card_array| card_array.name}
+      cards_sorted.each.with_index(1) {|card, index| puts "#{index}. #{card.name}"}
     end
 
     # ---Prompt section---
@@ -108,11 +109,12 @@ module MtgCardseeker
       index = @input.to_i - 1
       if (1..20).include?(index) 
         if index >= 0
-          puts "Name: #{find_card_by_type(type)[index].name}"
-          puts "Color: #{find_card_by_type(type)[index].colors.join}"
-          puts "ManaCost: #{find_card_by_type(type)[index].manacost}"
-          puts "Type: #{find_card_by_type(type)[index].types.join}"
-          puts "Description: #{find_card_by_type(type)[index].text}"
+          card = MtgCards.find_card_by_type(type)[index]
+          puts "Name: #{card.name}"
+          puts "Color: #{card.colors.join}"
+          puts "ManaCost: #{card.manacost}"
+          puts "Type: #{card.types.join}"
+          puts "Description: #{card.text}"
         end
       else
         puts "Sorry, that's not a valid entry. Please pick a number 1-20."
