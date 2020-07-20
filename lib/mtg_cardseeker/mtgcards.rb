@@ -1,4 +1,4 @@
-#This will store and what interate over data retrieved?.
+#This will store and return data.
 
 module MtgCardseeker
   class MtgCards
@@ -7,6 +7,12 @@ module MtgCardseeker
 
     # @@all = []
     # @@all = (MtgCards.new("Avarice", "{3}{W}{W}", "Creature", "White", "Enters the battlefield indestructible"))
+
+    def self.load
+      API.get_cards.collect do |card_data_hash|
+          MtgCards.new(card_data_hash)
+        end
+    end
 
     def self.all
       @@all ||= self.load
@@ -17,13 +23,8 @@ module MtgCardseeker
       @@new_all = MtgCards.all.uniq {|instance| instance.name}
     end
 
-    def self.load
-      API.get_cards.collect do |card_data_hash|
-          MtgCards.new(card_data_hash)
-        end
-    end
 
-    # # ----Insert Find By section?----
+    # ----Insert Find By section----
 
     def self.find_card_by_type(type)
       MtgCards.all_uniq.find_all {|instance| instance.types.join == type}
@@ -31,7 +32,6 @@ module MtgCardseeker
     
     
     def initialize(attribute = {})
-      # attributes.each {|key, value| self.send(("#{key}="), value)}
       @name = attribute["name"]
       @manacost = attribute["manaCost"]
       @types = attribute["types"]
