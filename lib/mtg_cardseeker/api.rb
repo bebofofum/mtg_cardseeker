@@ -1,7 +1,3 @@
-require "httparty"
-require 'json'
-# require 'open-uri'
-
 # The API. The role is to retrieve from the API.
 
 module MtgCardseeker
