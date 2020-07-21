@@ -1,4 +1,5 @@
 require "httparty"
+require 'json'
 require 'pry'
 require 'colorize'
 require_relative "./mtg_cardseeker/version"
