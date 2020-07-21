@@ -1,12 +1,9 @@
-#This will store and return data.
+#This will store and return objects.
 
 module MtgCardseeker
   class MtgCards
 
     attr_accessor :name, :manacost, :types, :colors, :text
-
-    # @@all = []
-    # @@all = (MtgCards.new("Avarice", "{3}{W}{W}", "Creature", "White", "Enters the battlefield indestructible"))
 
     def self.load
       API.get_cards.collect do |card_data_hash|
@@ -32,6 +29,7 @@ module MtgCardseeker
     
     
     def initialize(attribute = {})
+      #setting card attributes
       @name = attribute["name"]
       @manacost = attribute["manaCost"]
       @types = attribute["types"]
