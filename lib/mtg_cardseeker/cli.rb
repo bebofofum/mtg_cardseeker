@@ -12,6 +12,8 @@ module MtgCardseeker
       goodbye
     end
 
+    # ---Displaying first menu to user---
+
     def menu
       # This uses a HEREDOC for multiline listing
       puts "-------------------------".colorize(:green) 
@@ -26,6 +28,8 @@ Choose a how you would like to see a card. You can view by name, creature, encha
 Or type 'exit' at any time to leave the program. Type 'menu' to return to the main menu.
       MENU
     end
+
+    # ---getting user input and displaying list of choices---
 
     def valid?
       @input != "exit" && @input != "quit"
@@ -65,16 +69,11 @@ Or type 'exit' at any time to leave the program. Type 'menu' to return to the ma
       end
     end
 
+    # ---Ending and exiting method---
+
     def goodbye
       puts "Thanks for using the Card Seeker. Come back soon."
-    end
-
-    # # ----Find By section? How to move this?----
-    
-    # def find_card_by_type(type)
-    #   MtgCards.all_uniq.find_all {|instance| instance.types.join == type}
-    # end
-    
+    end    
 
     # ---List section---
 
@@ -108,7 +107,6 @@ Or type 'exit' at any time to leave the program. Type 'menu' to return to the ma
       else
         puts "Sorry, that's not a valid entry.".colorize(:red)
         puts
-        # menu 
       end
     end
 
@@ -118,7 +116,6 @@ Or type 'exit' at any time to leave the program. Type 'menu' to return to the ma
       @input = gets.strip.downcase
       index = @input.to_i - 1
       range = MtgCards.find_card_by_type(type).length - 1
-      # binding.pry
       if (1..range).include?(index) 
         if index >= 0
         card = MtgCards.find_card_by_type(type)[index]
@@ -131,7 +128,6 @@ Or type 'exit' at any time to leave the program. Type 'menu' to return to the ma
       else
         puts "Sorry, that's not a valid entry".colorize(:red)
         puts
-        # menu 
       end
     end
 
